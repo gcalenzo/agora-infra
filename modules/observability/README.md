@@ -2,7 +2,7 @@
 
 CloudWatch log groups, metric alarms, and dashboard. Monitoring is structured around the four golden signals (latency, traffic, errors, saturation).
 
-A dedicated alarm on `ApproximateNumberOfMessagesVisible > 0` on the DLQ ensures that async task failures are surfaced immediately before they accumulate silently.
+A dedicated alarm on `ApproximateNumberOfMessagesVisible > 0` on the DLQ makes failed async tasks visible before they accumulate silently.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -42,8 +42,8 @@ No modules.
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_alb_arn_suffix"></a> [alb\_arn\_suffix](#input\_alb\_arn\_suffix) | ALB ARN suffix for CloudWatch metrics (e.g. app/my-alb/1234567890abcdef) | `string` | n/a | yes |
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region — used to pin CloudWatch dashboard widgets to the correct region | `string` | n/a | yes |
 | <a name="input_dlq_alarm_threshold"></a> [dlq\_alarm\_threshold](#input\_dlq\_alarm\_threshold) | Number of DLQ messages that triggers an alarm | `number` | `1` | no |
-| <a name="input_dlq_arn"></a> [dlq\_arn](#input\_dlq\_arn) | DLQ ARN (kept for compatibility, used by root outputs) | `string` | n/a | yes |
 | <a name="input_dlq_name"></a> [dlq\_name](#input\_dlq\_name) | DLQ queue name for CloudWatch metrics | `string` | n/a | yes |
 | <a name="input_ecs_cluster_name"></a> [ecs\_cluster\_name](#input\_ecs\_cluster\_name) | ECS cluster name for CloudWatch metrics | `string` | n/a | yes |
 | <a name="input_ecs_service_name"></a> [ecs\_service\_name](#input\_ecs\_service\_name) | ECS service name for CloudWatch metrics | `string` | n/a | yes |

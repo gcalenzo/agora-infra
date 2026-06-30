@@ -74,8 +74,6 @@ No modules.
 | Name | Description |
 | ---- | ----------- |
 | <a name="output_dlq_arn"></a> [dlq\_arn](#output\_dlq\_arn) | Dead Letter Queue ARN |
-| <a name="output_dlq_url"></a> [dlq\_url](#output\_dlq\_url) | Dead Letter Queue URL |
 | <a name="output_queue_arn"></a> [queue\_arn](#output\_queue\_arn) | SQS task queue ARN |
-| <a name="output_queue_url"></a> [queue\_url](#output\_queue\_url) | SQS task queue URL |
 | <a name="output_worker_function_name"></a> [worker\_function\_name](#output\_worker\_function\_name) | Async worker Lambda function name |
 <!-- END_TF_DOCS -->

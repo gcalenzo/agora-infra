@@ -60,13 +60,23 @@ agora-infra/
 │   └── prod/
 │       ├── terraform.tfvars
 │       └── backend.hcl
-├── main.tf               # Module composition
+├── main.tf               # Entry point (index of per-service files)
+├── vpc.tf                # VPC, subnets, NAT Gateway
+├── alb.tf                # Internal ALB
+├── ecs.tf                # ECS cluster, service, task definition, IAM, autoscaling
+├── rds.tf                # RDS primary + read replica
+├── s3.tf                 # S3 frontend bucket
+├── sqs.tf                # SQS task queue + DLQ (root to avoid circular dependency)
+├── dns.tf                # Route53 + ACM data sources + alias record
+├── cloudfront.tf         # CloudFront module call
+├── async_workers.tf      # Async workers module call
+├── observability.tf      # Observability module call
 ├── variables.tf          # Input variable declarations
 ├── outputs.tf            # Root outputs
 ├── locals.tf             # Derived values and naming conventions
 ├── data.tf               # Data sources (caller identity, AZs, region)
 ├── providers.tf          # AWS provider config (default + us-east-1 alias for ACM)
-├── backend.tf            # S3 remote state backend
+├── backend.tf            # S3 remote state backend (partial config)
 └── versions.tf           # Terraform and provider version constraints
 ```
 

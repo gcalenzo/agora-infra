@@ -1,6 +1,6 @@
 # module: cloudfront
 
-Custom CloudFront distribution with two origins: S3 for the static SPA frontend and a VPC Origin pointing to the internal ALB for API traffic. The ALB is not publicly accessible — all traffic reaches it exclusively through CloudFront.
+Custom CloudFront distribution with two origins: S3 for the static SPA frontend and a VPC Origin pointing to the internal ALB for API traffic. The ALB is not publicly accessible; all traffic reaches it through CloudFront.
 
 This module is custom-built because community modules do not fully support VPC Origin (private ALB as CloudFront origin).
 
