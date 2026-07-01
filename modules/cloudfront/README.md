@@ -2,6 +2,8 @@
 
 Custom CloudFront distribution with two origins: S3 for the static SPA frontend and a VPC Origin pointing to the internal ALB for API traffic. The ALB is not publicly accessible; all traffic reaches it through CloudFront.
 
+A WAFv2 Web ACL (scope=CLOUDFRONT, deployed in us-east-1) is attached to the distribution. It applies the AWS Managed Rules Common Rule Set (OWASP Top 10 coverage) and a per-IP rate limiting rule.
+
 This module is custom-built because community modules do not fully support VPC Origin (private ALB as CloudFront origin).
 
 <!-- BEGIN_TF_DOCS -->
@@ -17,6 +19,7 @@ This module is custom-built because community modules do not fully support VPC O
 | Name | Version |
 | ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.0 |
+| <a name="provider_aws.us_east_1"></a> [aws.us\_east\_1](#provider\_aws.us\_east\_1) | ~> 5.0 |
 
 ## Modules
 
@@ -30,6 +33,7 @@ No modules.
 | [aws_cloudfront_origin_access_control.s3](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_origin_access_control) | resource |
 | [aws_cloudfront_vpc_origin.alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_vpc_origin) | resource |
 | [aws_s3_bucket_policy.frontend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
+| [aws_wafv2_web_acl.cloudfront](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl) | resource |
 | [aws_cloudfront_cache_policy.caching_disabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/cloudfront_cache_policy) | data source |
 | [aws_cloudfront_cache_policy.caching_optimized](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/cloudfront_cache_policy) | data source |
 | [aws_cloudfront_origin_request_policy.all_viewer_except_host](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/cloudfront_origin_request_policy) | data source |
